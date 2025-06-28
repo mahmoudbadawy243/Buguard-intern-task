@@ -3,12 +3,19 @@ import { getSpecificPost } from "@/lib/postsSlice";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import { AppDispatch, RootState } from "@/lib/store";
 
-export default function PostDetails({ params }: { params: { id: string } }) {
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default function PostDetails({ params }: PageProps) {
   
-  const dispatch = useDispatch<any>();
+  const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
-  const { specificPost, isLoading } = useSelector((state: any) => state.posts);
+  const { specificPost, isLoading } = useSelector((state: RootState) => state.posts);
 
   useEffect(() => {
     dispatch(getSpecificPost(params.id));
@@ -71,7 +78,7 @@ export default function PostDetails({ params }: { params: { id: string } }) {
         ) : (
           <div className="bg-white rounded-xl shadow-lg p-8 text-center">
             <h2 className="text-2xl font-semibold text-gray-800 ">Post not found</h2>
-            <p className="mt-2 text-gray-600">The post you're looking for doesn't exist or has been removed.</p>
+            <p className="mt-2 text-gray-600">The post you&apos;re looking for doesn&apos;t exist or has been removed.</p>
           </div>
         )}
       </div>
