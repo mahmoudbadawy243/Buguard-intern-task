@@ -5,9 +5,9 @@ import { PostType } from "../app/_interfaces/home.type";
 export const getAllPosts = createAsyncThunk('postsSlice/getAllPosts', async () => {
   const response = await fetch(`https://jsonplaceholder.typicode.com/posts`, {
     method: 'GET',
-    headers: {
-      token: localStorage.getItem('userToken') || ''
-    }
+    // headers: {
+    //   // token: localStorage.getItem('userToken') || ''
+    // }
   })
   const data = await response.json()
   return data
@@ -16,11 +16,11 @@ export const getAllPosts = createAsyncThunk('postsSlice/getAllPosts', async () =
 
 // get specific post ------------------------------------------------------------------------------------------------------
 export const getSpecificPost = createAsyncThunk('postsSlice/getSpecificPost', async (id:string) => {
-  const response = await fetch(`https://jsonplaceholder.typicode.com/posts/:${id}`, {
+  const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
     method: 'GET',
-    headers: {
-      token: localStorage.getItem('userToken') || ''
-    }
+    // headers: {
+    //   token: localStorage.getItem('userToken') || ''
+    // }
   })
   const data = await response.json()
   return data
@@ -38,7 +38,7 @@ const postsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getAllPosts.fulfilled, (state, _action) => {
       state.isLoading = false
-      state.allPosts = _action.payload.posts
+      state.allPosts = _action.payload
     })
     builder.addCase(getAllPosts.pending, (state) => {
       state.isLoading = true
@@ -52,7 +52,7 @@ const postsSlice = createSlice({
     // -----------------------------------------------------------------------------------------------------------
     builder.addCase(getSpecificPost.fulfilled, (state, _action) => {
       state.isLoading = false
-      state.specificPost = _action.payload?.post || null
+      state.specificPost = _action.payload || null
     })
     builder.addCase(getSpecificPost.pending, (state) => {
       state.isLoading = true
