@@ -2,23 +2,19 @@
 import { getSpecificPost } from "@/lib/postsSlice";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { AppDispatch, RootState } from "@/lib/store";
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default function PostDetails({ params }: PageProps) {
-  
+export default function PostDetails() {
+  const params = useParams();
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const { specificPost, isLoading } = useSelector((state: RootState) => state.posts);
 
   useEffect(() => {
-    dispatch(getSpecificPost(params.id));
+    if (params.id) {
+      dispatch(getSpecificPost(params.id.toString()));
+    }
   }, [dispatch, params.id]);
   
   return (
