@@ -15,11 +15,11 @@ export default function PostDetails({ params }: { params: { id: string } }) {
   }, [dispatch, params.id]);
   
   return (
-    <main className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-gray-900 dark:to-indigo-950 py-10 px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <button 
           onClick={() => router.back()} 
-          className="mb-8 flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition-colors"
+          className="mb-8 flex items-center text-indigo-600 hover:text-indigo-800 transition-colors"
         >
           <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
@@ -28,28 +28,28 @@ export default function PostDetails({ params }: { params: { id: string } }) {
         </button>
         
         {isLoading ? (
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 animate-pulse">
-            <div className="h-7 bg-purple-200 dark:bg-purple-700 rounded w-3/4 mb-6"></div>
+          <div className="bg-white rounded-xl shadow-lg p-8 animate-pulse">
+            <div className="h-7 bg-purple-200 rounded w-3/4 mb-6"></div>
             <div className="space-y-3">
-              <div className="h-4 bg-purple-200 dark:bg-purple-700 rounded"></div>
-              <div className="h-4 bg-purple-200 dark:bg-purple-700 rounded w-5/6"></div>
-              <div className="h-4 bg-purple-200 dark:bg-purple-700 rounded w-4/6"></div>
+              <div className="h-4 bg-purple-200 rounded"></div>
+              <div className="h-4 bg-purple-200 rounded w-5/6"></div>
+              <div className="h-4 bg-purple-200 rounded w-4/6"></div>
             </div>
           </div>
         ) : specificPost ? (
-          <article className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-purple-100 dark:border-purple-900">
+          <article className="bg-white rounded-xl shadow-lg overflow-hidden border border-purple-100">
             <div className="h-3 bg-gradient-to-r from-purple-500 to-indigo-500"></div>
             <div className="p-8">
-              <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">
+              <h1 className="text-3xl font-bold mb-6 text-gray-800 ">
                 {specificPost.title}
               </h1>
-              <div className="prose prose-indigo dark:prose-invert max-w-none">
-                <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+              <div className="prose prose-indigo max-w-none">
+                <p className="text-gray-600 text-lg leading-relaxed">
                   {specificPost.body}
                 </p>
               </div>
               
-              <div className="mt-10 pt-6 border-t border-gray-200 dark:border-gray-700">
+              <div className="mt-10 pt-6 border-t border-gray-200">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
                     <div className="h-10 w-10 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 flex items-center justify-center text-white font-bold">
@@ -57,10 +57,10 @@ export default function PostDetails({ params }: { params: { id: string } }) {
                     </div>
                   </div>
                   <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                    <p className="text-sm font-medium text-gray-900 ">
                       Post ID: {specificPost.id}
                     </p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                    <p className="text-sm text-gray-500">
                       From JSONPlaceholder API
                     </p>
                   </div>
@@ -69,9 +69,9 @@ export default function PostDetails({ params }: { params: { id: string } }) {
             </div>
           </article>
         ) : (
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 text-center">
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">Post not found</h2>
-            <p className="mt-2 text-gray-600 dark:text-gray-300">The post you're looking for doesn't exist or has been removed.</p>
+          <div className="bg-white rounded-xl shadow-lg p-8 text-center">
+            <h2 className="text-2xl font-semibold text-gray-800 ">Post not found</h2>
+            <p className="mt-2 text-gray-600">The post you're looking for doesn't exist or has been removed.</p>
           </div>
         )}
       </div>
